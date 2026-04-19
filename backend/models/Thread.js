@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-
 const MessageSchema = new mongoose.Schema({
     role:{
         type:String,
@@ -15,9 +14,11 @@ const MessageSchema = new mongoose.Schema({
         default:Date.now 
     }
 });
-
-
 const ThreadSchema = new mongoose.Schema({
+    userId: {
+        type: String,
+        required: true
+    },
     threadId:{
         type: String,
         required:true,
@@ -36,8 +37,5 @@ const ThreadSchema = new mongoose.Schema({
          type: Date,
         default:Date.now 
     }
-
 })
-
-
 export default mongoose.model("Thread",ThreadSchema);

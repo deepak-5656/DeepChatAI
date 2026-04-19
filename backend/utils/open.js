@@ -1,5 +1,4 @@
 import fetch from "node-fetch";
-
  const getGeminiResponse = async (message) => {
   try {
     const response = await fetch(
@@ -18,18 +17,13 @@ import fetch from "node-fetch";
         })
       }
     );
-
     const data = await response.json();
-
     const reply =
       data?.candidates?.[0]?.content?.parts?.[0]?.text || "No response";
-
     return reply;
-
   } catch (err) {
     console.log(err);
     return "Error occurred";
   }
 };
-
 export default getGeminiResponse;

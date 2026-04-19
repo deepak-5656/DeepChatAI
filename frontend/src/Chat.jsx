@@ -1,19 +1,26 @@
 import "./Chat.css";
-import { useContext,useState, useEffect } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { MyContext } from "./MyContext.jsx";
 import ReactMarkdown from "react-markdown";
 import rehypeHighlight from  "rehype-highlight";
 import   "highlight.js/styles/github-dark.css";
 
-
-
-// react-markdown
-// rehype -highlight
-
-
 function Chat(){
-    const {newChat,prevChats,reply} = useContext(MyContext);
+    const { newChat, prevChats, reply, user, isNewUser, setIsNewUser } = useContext(MyContext);
     const [latestReply, setLatestReply] = useState(null);
+
+    const getGreeting = () => {
+        const hour = new Date().getHours();
+        if (hour < 12) return "Good Morning";
+        if (hour < 17) return "Good Afternoon";
+        return "Good Evening";
+    };
+
+    useEffect(() => {
+        if (!newChat) {
+            setIsNewUser(false);
+        }
+    }, [newChat]);
 
     useEffect(() => {
         if(reply === null) {
@@ -39,7 +46,56 @@ function Chat(){
 
      return (
          <>
-            {newChat && <h1>Start a New Chat!</h1>}
+            {}
+            {newChat && (
+                <div className="welcome-container">
+                    {}
+                    {isNewUser ? (
+                        <div className="welcome-hero">
+                            <div className="welcome-icon welcome-wave">
+                                <i className="fa-solid fa-hand-sparkles"></i>
+                            </div>
+                            <h1 className="welcome-title">
+                                Welcome, <span className="welcome-name">{user?.name || "there"}</span>!
+                            </h1>
+                            <p className="welcome-subtitle">
+                                Your account is all set up. I'm DeepChat, your AI assistant — ask me anything to get started!
+                            </p>
+                        </div>
+                    ) : (
+                        <div className="welcome-hero">
+                            <div className="welcome-icon">
+                                <i className="fa-solid fa-bolt"></i>
+                            </div>
+                            <h1 className="welcome-title">
+                                {getGreeting()}, <span className="welcome-name">{user?.name || "there"}</span>
+                            </h1>
+                            <p className="welcome-subtitle">How can I help you today?</p>
+                        </div>
+                    )}
+
+                    {}
+                    <div className="welcome-suggestions">
+                        <div className="suggestion-chip">
+                            <i className="fa-solid fa-lightbulb"></i>
+                            <span>Explain a concept</span>
+                        </div>
+                        <div className="suggestion-chip">
+                            <i className="fa-solid fa-code"></i>
+                            <span>Help me code</span>
+                        </div>
+                        <div className="suggestion-chip">
+                            <i className="fa-solid fa-pen-fancy"></i>
+                            <span>Write something</span>
+                        </div>
+                        <div className="suggestion-chip">
+                            <i className="fa-solid fa-magnifying-glass"></i>
+                            <span>Analyze & research</span>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             <div className="chats">
                 {
                     prevChats?.slice(0, -1).map((chat, idx) => 
@@ -71,10 +127,11 @@ function Chat(){
                         </>
                     )
                 }
- 
+
             </div>
         </>
     )
 }
 
 export default Chat;
+

@@ -1,0 +1,299 @@
+
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(-45deg, #0f0f0f, #1a1a2e, #16213e, #0f3460);
+    background-size: 400% 400%;
+
+    animation: gradientShift 15s ease infinite;
+    padding: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.auth-page::before,
+.auth-page::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.3;
+    z-index: 0;
+}
+
+.auth-page::before {
+    width: 400px;
+    height: 400px;
+    background: #339cff;
+    top: -100px;
+    right: -100px;
+}
+
+.auth-page::after {
+    width: 350px;
+    height: 350px;
+    background: #7c3aed;
+    bottom: -80px;
+    left: -80px;
+}
+
+.auth-card {
+
+    background: rgba(255, 255, 255, 0.05);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 3rem 2.5rem;
+    width: 100%;
+    max-width: 420px;
+
+    animation: slideUp 0.6s ease-out;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.auth-logo {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.auth-logo-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #863bff, #7e14ff);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    font-size: 1.5rem;
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(134, 59, 255, 0.3);
+}
+
+.auth-logo h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.auth-logo p {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+    margin: 0.5rem 0 0;
+}
+
+.auth-toggle {
+    display: flex;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 4px;
+    margin-bottom: 2rem;
+}
+
+.auth-toggle button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 10px;
+
+    transition: all 0.3s ease;
+    color: rgba(255, 255, 255, 0.5);
+    background: transparent;
+    margin: 0;
+}
+
+.auth-toggle button.active {
+    background: rgba(134, 59, 255, 0.2);
+    color: #a78bfa;
+    box-shadow: 0 2px 8px rgba(134, 59, 255, 0.15);
+}
+
+.auth-toggle button:hover:not(.active) {
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.auth-form {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.auth-input-group {
+    margin-bottom: 1.2rem;
+    position: relative;
+}
+
+.auth-input-group label {
+    display: block;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.auth-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.auth-input-wrapper i {
+    position: absolute;
+    left: 14px;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.9rem;
+
+    transition: color 0.3s ease;
+}
+
+.auth-input-wrapper input {
+    width: 100%;
+    padding: 14px 14px 14px 42px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 0.95rem;
+    font-family: inherit;
+
+    transition: all 0.3s ease;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.auth-input-wrapper input::placeholder {
+    color: rgba(255, 255, 255, 0.25);
+}
+
+.auth-input-wrapper input:focus {
+    border-color: #339cff;
+    box-shadow: 0 0 0 3px rgba(51, 156, 255, 0.15);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.auth-input-wrapper input:focus + i,
+.auth-input-wrapper:focus-within i {
+    color: #339cff;
+}
+
+.auth-submit {
+    width: 100%;
+    padding: 14px;
+
+    background: linear-gradient(135deg, #863bff, #6d28d9);
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+    font-family: inherit;
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-submit:hover:not(:disabled) {
+
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(134, 59, 255, 0.35);
+}
+
+.auth-submit:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.auth-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.auth-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.auth-error {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #fca5a5;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+
+    animation: shake 0.4s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.8rem;
+}
+
+@media (max-width: 480px) {
+    .auth-card {
+        padding: 2rem 1.5rem;
+        border-radius: 18px;
+    }
+
+    .auth-logo h1 {
+        font-size: 1.5rem;
+    }
+}
