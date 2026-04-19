@@ -16,7 +16,8 @@ function Sidebar() {
 
     const getAllThreads = async () => {
         try {
-            const response = await fetch("http://localhost:8080/api/thread", {
+            const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
+            const response = await fetch(`${API_BASE_URL}/api/thread`, {
                 headers: {
                     "Authorization": `Bearer ${token}`
                 }
@@ -44,7 +45,8 @@ function Sidebar() {
     const changeThread = async (newThreadId) => {
         setcurrThreadId(newThreadId);
         try {
-            const response = await fetch(`http://localhost:8080/api/thread/${newThreadId}`, {
+            const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
+            const response = await fetch(`${API_BASE_URL}/api/thread/${newThreadId}`, {
                 headers: {
                     "Authorization": `Bearer ${token}`
                 }
@@ -60,7 +62,8 @@ function Sidebar() {
 
     const deleteThread = async (threadId) => {
         try {
-            const response = await fetch(`http://localhost:8080/api/thread/${threadId}`, {
+            const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
+            const response = await fetch(`${API_BASE_URL}/api/thread/${threadId}`, {
                 method: "DELETE",
                 headers: {
                     "Authorization": `Bearer ${token}`

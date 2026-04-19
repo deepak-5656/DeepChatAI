@@ -40,7 +40,8 @@ function ChatWindow() {
         };
 
         try {
-            const response = await fetch("http://localhost:8080/api/chat", options);
+            const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
+            const response = await fetch(`${API_BASE_URL}/api/chat`, options);
 
             if (response.status === 401) {
                 logout();
